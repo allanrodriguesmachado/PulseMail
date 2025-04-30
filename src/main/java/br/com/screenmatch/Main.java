@@ -6,6 +6,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+import com.google.gson.Gson;
+
+import br.com.screenmatch.Movie.Title;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -20,5 +23,10 @@ public class Main {
         var request = HttpRequest.newBuilder().uri(URI.create(urlMovie)).build();
         var response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
+
+        String json = response.body();
+        Gson newGson = new Gson();
+        Title titleMovie = newGson.fromJson(json, Title.class);
+        System.out.println(titleMovie.getTitle());
     }
 }
