@@ -22,5 +22,3 @@ public class Main {
         System.out.println(response.body());
     }
 }
-
-//Quero criar uma doc no Readme.md pra colocar no github sobre esse codigo ainda vou melhorar
