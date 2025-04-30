@@ -6,8 +6,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Scanner;
+
 import com.google.gson.Gson;
 
+import br.com.screenmatch.Movie.CreateTitle;
 import br.com.screenmatch.Movie.Title;
 
 public class Main {
@@ -26,7 +28,9 @@ public class Main {
 
         String json = response.body();
         Gson newGson = new Gson();
-        Title titleMovie = newGson.fromJson(json, Title.class);
-        System.out.println(titleMovie.getTitle());
+        CreateTitle titleMovie = newGson.fromJson(json, CreateTitle.class);
+        System.out.println(titleMovie.Title());
+        System.out.println(titleMovie.Year());
+        System.out.println(titleMovie.Genre());
     }
 }
