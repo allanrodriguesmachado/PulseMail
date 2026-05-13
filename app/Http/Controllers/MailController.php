@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mail;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
@@ -21,15 +22,15 @@ class MailController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
      * Store a newly created resource in storage.
+     * @throws \Throwable
      */
     public function store(Request $request)
     {
-
         $data = $request->validate([
             'title' => 'required|string|max:255',
             'file' => 'required|file',
@@ -51,11 +52,13 @@ class MailController extends Controller
             ];
         }
 
-        $request = Mail::create([
-            'title' => $data['title'],
-        ]);
+        DB::transaction(function () use ($data, $items) {
+            $request = Mail::create([
+                'title' => $data['title'],
+            ]);
 
-        $request->subscribers()->createMany($items);
+            $request->subscribers()->createMany($items);
+        });
 
         return to_route('index');
     }
