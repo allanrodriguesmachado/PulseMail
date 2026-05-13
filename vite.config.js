@@ -8,4 +8,10 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // Adicione isso para garantir que o Docker (Sail) se comunique com o navegador
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });
