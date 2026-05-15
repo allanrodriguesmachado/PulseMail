@@ -14,11 +14,22 @@ class MailController extends Controller
      */
     public function index()
     {
-        $emails = Mail::query()->get();
+        $search = request()->query('search');
+
+        $emails = Mail::query()
+            ->when($search, fn($q) => $q
+                ->where('title', 'ilike', "%{$search}%")
+                ->orWhere('id', is_numeric($search) ? $search : null)
+            )
+            ->paginate(5)
+            ->withQueryString();
+
 
         $emails->isNotEmpty();
 
-       return view('mail.index', compact('emails'));
+        return view('mail.index', [
+            'emails' => $emails
+        ]);
     }
 
     /**
@@ -46,7 +57,7 @@ class MailController extends Controller
         $items = [];
 
         while (($row = fgetcsv($csvHandle, null, ',')) !== false) {
-            if($row[0] === 'name' && $row[1] === 'email') {
+            if ($row[0] === 'name' && $row[1] === 'email') {
                 continue;
             }
 

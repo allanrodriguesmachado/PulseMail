@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Mail;
+use App\Models\Subscriber;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,5 +23,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        Mail::factory(50)->create()->each(function (Mail $mail) {
+            Subscriber::factory(100)->create([
+                'mail_id' => $mail->id,
+            ]);
+        });
     }
 }
