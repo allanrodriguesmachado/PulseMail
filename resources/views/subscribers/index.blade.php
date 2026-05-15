@@ -1,6 +1,11 @@
 <x-app-layout>
     <div class="max-w-3xl mx-auto px-4 py-8">
-
+        <div class="flex items-center justify-start mb-4">
+            <a href="{{ route('mail.index') }}"
+               class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors">
+             Voltar
+            </a>
+        </div>
         {{-- Cabeçalho --}}
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Assinantes</h1>
@@ -16,30 +21,29 @@
                    class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
         </div>
 
-        {{-- Lista --}}
+
+
         <div class="space-y-2">
+            <div>
             @forelse($subscribers as $subscriber)
+
                 <div class="flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
 
-                    {{-- ID --}}
                     <span class="text-xs font-medium text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-md px-2 py-1 shrink-0 w-10 text-center">
                         #{{ $subscriber->id }}
                     </span>
 
-                    {{-- Avatar --}}
                     <div class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center shrink-0">
                         <span class="text-xs font-semibold text-blue-600 dark:text-blue-300">
                             {{ strtoupper(substr($subscriber->name, 0, 1)) }}
                         </span>
                     </div>
 
-                    {{-- Nome e e-mail --}}
                     <div class="flex-1 min-w-0">
                         <p class="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">{{ $subscriber->name }}</p>
                         <p class="text-xs text-gray-400 truncate">{{ $subscriber->email }}</p>
                     </div>
 
-                    {{-- Status --}}
                     @if($subscriber->active ?? true)
                         <span class="text-xs font-medium px-2.5 py-1 rounded-full bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-400 shrink-0">
                             Ativo
@@ -83,4 +87,5 @@
             {{$subscribers->links()}}
         </div>
     </div>
+        >
 </x-app-layout>

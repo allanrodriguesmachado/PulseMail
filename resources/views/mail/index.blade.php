@@ -26,6 +26,7 @@
             <p class="text-sm text-gray-400 mb-3">{{ $emails->total() }} emails encontrados</p>
 
             <div class="flex flex-col gap-2">
+
                 @foreach($emails as $email)
                     <div class="flex items-center gap-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-5 py-4 hover:border-gray-300 transition-colors">
 
