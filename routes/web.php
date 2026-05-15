@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('mail', [MailController::class, 'index'])->name('mail.index');
     Route::get('mail/create', [MailController::class, 'create'])->name('mail.create');
     Route::post('mail', [MailController::class, 'store'])->name('mail.store');
-    Route::get('mail/subscribers/{email_id}', [SubscriberController::class, 'index'])->name('mail.subscribers');
+    Route::get('mail/subscribers/{subscriber}', [SubscriberController::class, 'index'])->name('mail.subscribers');
 });
 
 

@@ -10,7 +10,7 @@ class SubscriberController extends Controller
     public function index(Request $request)
     {
         $subscribers = Subscriber::query()
-            ->where('mail_id', $request->email_id)
+            ->where('mail_id', $request->subscriber)
             ->paginate(10)->withQueryString();
 
         return view('subscribers.index', compact('subscribers'));
