@@ -43,9 +43,9 @@
                         </span>
 
                         <div class="flex gap-2 shrink-0">
-                            <a href=""
+                            <a href="{{route('mail.subscribers', ['email_id' => $email->id])}}"
                                class="p-1.5 border border-gray-200 dark:border-gray-600 rounded-lg text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                                <i class="ti ti-edit text-base"></i>
+                                <i class="ti ti-edit text-base">{{__('Subscribers')}}</i>
                             </a>
                         </div>
                     </div>
