@@ -14,7 +14,11 @@ class MailController extends Controller
      */
     public function index()
     {
-       return view('mail.index');
+        $emails = Mail::query()->get();
+
+        $emails->isNotEmpty();
+
+       return view('mail.index', compact('emails'));
     }
 
     /**
