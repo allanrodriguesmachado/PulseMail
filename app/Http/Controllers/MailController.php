@@ -9,14 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class MailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $search = request()->query('search');
 
-        $emails = Mail::query()
+        $emails = Mail::query()->withCount('subscribers')
             ->when($search, fn($q) => $q
                 ->where('title', 'ilike', "%{$search}%")
                 ->orWhere('id', is_numeric($search) ? $search : null)
@@ -32,9 +29,6 @@ class MailController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('mail.create');
@@ -76,37 +70,5 @@ class MailController extends Controller
         });
 
         return to_route('index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Mail $mail)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Mail $mail)
-    {
-        //
     }
 }

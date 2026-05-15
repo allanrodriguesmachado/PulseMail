@@ -1,7 +1,6 @@
 <x-app-layout>
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
-        {{-- Barra superior --}}
         <div class="flex items-center justify-between gap-4 flex-wrap mb-6">
             <div class="relative flex-1 min-w-[200px] max-w-sm">
                 <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
@@ -23,7 +22,6 @@
             </a>
         </div>
 
-        {{-- Lista ou estado vazio --}}
         @if($emails->isNotEmpty())
             <p class="text-sm text-gray-400 mb-3">{{ $emails->total() }} emails encontrados</p>
 
@@ -41,7 +39,7 @@
 
                         <span class="flex items-center gap-1 text-sm text-gray-500 shrink-0">
                             <i class="ti ti-users text-base"></i>
-                            {{ $email->subscribers()->count() }} {{ __('Subscribers') }}
+                            {{ $email->subscribers_count }} {{ __('Subscribers') }}
                         </span>
 
                         <div class="flex gap-2 shrink-0">
