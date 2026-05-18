@@ -17,7 +17,7 @@ class SubscriberController extends Controller
         return view('subscribers.index', compact('subscribers'));
     }
 
-    public function edit(Request $request): View
+    public function edit(Request $request, Subscriber $subscriber): View
     {
        $subscriber =  Subscriber::query()->where('id', $request->subscriber)->firstOrFail();
 
