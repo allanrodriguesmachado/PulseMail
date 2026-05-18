@@ -22,6 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('mail/create', [MailController::class, 'create'])->name('mail.create');
     Route::post('mail', [MailController::class, 'store'])->name('mail.store');
     Route::get('mail/subscribers/{subscriber}', [SubscriberController::class, 'index'])->name('mail.subscribers');
+    Route::get('subscriber/{subscriber}/edit', [SubscriberController::class, 'edit'])->name('mail.subscribers.edit');
+    Route::put('subscriber/{subscriber}', [SubscriberController::class, 'update'])->name('mail.subscribers.update');
+    Route::delete('subscriber/{subscriber}', [SubscriberController::class, 'destroy'])->name('mail.subscribers.destroy');
 });
 
 

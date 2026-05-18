@@ -9,7 +9,7 @@
         {{-- Cabeçalho --}}
         <div class="flex items-center justify-between mb-6">
             <h1 class="text-lg font-semibold text-gray-900 dark:text-gray-100">Assinantes</h1>
-            <span class="text-sm text-gray-400">{{ $subscribers->count() }} registros</span>
+            <span class="text-sm text-gray-400">{{ $subscribers->count() }} {{__('Registers')}}</span>
         </div>
 
         {{-- Busca --}}
@@ -21,12 +21,8 @@
                    class="w-full pl-9 pr-4 py-2 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
         </div>
 
-
-
         <div class="space-y-2">
-            <div>
             @forelse($subscribers as $subscriber)
-
                 <div class="flex items-center gap-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-3 hover:border-gray-300 dark:hover:border-gray-600 transition-colors">
 
                     <span class="text-xs font-medium text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-md px-2 py-1 shrink-0 w-10 text-center">
@@ -54,29 +50,28 @@
                         </span>
                     @endif
 
-                    {{-- Ações --}}
-{{--                    <div class="flex items-center gap-1 shrink-0">--}}
-{{--                        <a href="{{ route('subscribers.edit', $subscriber) }}"--}}
-{{--                           class="p-1.5 rounded-lg border border-transparent hover:border-blue-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-600 transition-colors"--}}
-{{--                           title="Editar">--}}
-{{--                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
-{{--                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5m-1.414-9.414a2 2 0 1 1 2.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>--}}
-{{--                            </svg>--}}
-{{--                        </a>--}}
+                    <div class="flex items-center gap-1 shrink-0">
+                        <a href="{{ route('mail.subscribers.edit', $subscriber) }}"
+                           class="p-1.5 rounded-lg border border-transparent hover:border-blue-200 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-gray-400 hover:text-blue-600 transition-colors"
+                           title="Editar">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-5m-1.414-9.414a2 2 0 1 1 2.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </a>
 
-{{--                        <form action="{{ route('subscribers.destroy', $subscriber) }}" method="POST"--}}
-{{--                              onsubmit="return confirm('Excluir {{ $subscriber->name }}?')">--}}
-{{--                            @csrf--}}
-{{--                            @method('DELETE')--}}
-{{--                            <button type="submit"--}}
-{{--                                    class="p-1.5 rounded-lg border border-transparent hover:border-red-200 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-400 hover:text-red-600 transition-colors"--}}
-{{--                                    title="Excluir">--}}
-{{--                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">--}}
-{{--                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v3M4 7h16"/>--}}
-{{--                                </svg>--}}
-{{--                            </button>--}}
-{{--                        </form>--}}
-{{--                    </div>--}}
+                        <form action="{{ route('mail.subscribers.destroy', $subscriber) }}" method="POST"
+                              onsubmit="return confirm('Excluir {{ $subscriber->name }}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="p-1.5 rounded-lg border border-transparent hover:border-red-200 hover:bg-red-50 dark:hover:bg-red-900/30 text-gray-400 hover:text-red-600 transition-colors"
+                                    title="Excluir">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v3M4 7h16"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             @empty
                 <div class="text-center py-12 text-gray-400">
@@ -87,5 +82,4 @@
             {{$subscribers->links()}}
         </div>
     </div>
-        >
 </x-app-layout>
